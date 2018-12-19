@@ -10,38 +10,50 @@ import com.gamecenter.repository.EmpresaRepository;
 
 @Service
 public class EmpresaService {
-	private EmpresaRepository empRep;
+	private EmpresaRepository empresaRepository;
 
 	@Autowired
-	public EmpresaService(EmpresaRepository empRep) {
-		this.empRep = empRep;
+	public EmpresaService(EmpresaRepository empresaRepository) {
+		this.empresaRepository = empresaRepository;
 	}
 	
 	public void save(Empresa empresa) {
 		validarEmpresa(empresa);
-		this.empRep.saveAndFlush(empresa);
+		this.empresaRepository.saveAndFlush(empresa);
 	}
 	
-	public void findById(Integer id) {
-		Optional<Empresa> empFounded = this.empRep.findById(id);
+	public Empresa findById(Integer id) {
+		Optional<Empresa> empFounded = empresaRepository.findById(id);
 		if (empFounded.isPresent()) {
-			empFounded.get();
+			return empFounded.get();
 		}
 		throw new ServiceException("Empresa não encontrada");
 	}
 	
-	public void validarEmpresa(Empresa empresa) {
-		Optional<Empresa> empFounded = this.empRep.findById(empresa.getId());
+	public Empresa findByName(String nome) {
+		Optional<Empresa> empFounded = empresaRepository.findByName(nome);
+		if (empFounded.isPresent()) {
+			return empFounded.get();
+		}
+		throw new ServiceException("Empresa não encontrada");
+	}
+	
+	private void validarEmpresa(Empresa empresa) {
+		Optional<Empresa> empFounded = empresaRepository.findByName(empresa.getNome());
 		if (empFounded.isPresent()) {
 			throw new ServiceException("Empresa já cadastrada");
 		}
 	}
 	
 	public void update(Empresa empresa) {
-		this.empRep.saveAndFlush(empresa);
+		this.empresaRepository.saveAndFlush(empresa);
 	}
 	
-	public void deleteById(Integer id) {
-		this.empRep.deleteById(id);
+	public void delete(Empresa empresa) {
+		this.empresaRepository.delete(empresa);
+	}
+
+	public void deleteAll() {
+		this.empresaRepository.deleteAll();
 	}
 }

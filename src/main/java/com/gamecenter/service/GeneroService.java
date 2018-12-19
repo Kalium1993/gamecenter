@@ -22,19 +22,19 @@ public class GeneroService {
 		this.genRep.saveAndFlush(gen);
 	}
 
-	public void findById(Integer id) {
-		Optional<Genero> genFounded = this.genRep.findById(id);
-		if (genFounded.isPresent()) {
-			genFounded.get();
-		}
-		throw new ServiceException("Gênero não encontrado");
-	}
-	
-	public void validarGenero(Genero gen) {
+	private void validarGenero(Genero gen) {
 		Optional<Genero> genFounded = this.genRep.findById(gen.getId());
 		if (genFounded.isPresent()) {
 			throw new ServiceException("Gênero já cadastrado");
 		}
+	}
+	
+	public Genero findById(Integer id) {
+		Optional<Genero> genFounded = this.genRep.findById(id);
+		if (genFounded.isPresent()) {
+			return genFounded.get();
+		}
+		throw new ServiceException("Gênero não encontrado");
 	}
 	
 	public void update(Genero gen) {
