@@ -53,4 +53,8 @@ public class GeneroService {
 		this.genRep.delete(gen);
 	}
 	
+	public void deleteAll() {
+		this.genRep.deleteAll();
+	}
+	
 }

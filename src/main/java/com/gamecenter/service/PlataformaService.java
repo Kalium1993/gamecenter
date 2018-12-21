@@ -52,4 +52,8 @@ public class PlataformaService {
 	public void delete(Plataforma plat) {
 		this.platRep.delete(plat);
 	}
+	
+	public void deleteAll() {
+		this.platRep.deleteAll();
+	}
 }
