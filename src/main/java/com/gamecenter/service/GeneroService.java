@@ -23,7 +23,7 @@ public class GeneroService {
 	}
 
 	private void validarGenero(Genero gen) {
-		Optional<Genero> genFounded = this.genRep.findById(gen.getId());
+		Optional<Genero> genFounded = this.genRep.findByName(gen.getNome());
 		if (genFounded.isPresent()) {
 			throw new ServiceException("Gênero já cadastrado");
 		}
@@ -31,6 +31,14 @@ public class GeneroService {
 	
 	public Genero findById(Integer id) {
 		Optional<Genero> genFounded = this.genRep.findById(id);
+		if (genFounded.isPresent()) {
+			return genFounded.get();
+		}
+		throw new ServiceException("Gênero não encontrado");
+	}
+	
+	public Genero findByName(Genero genero) {
+		Optional<Genero> genFounded = this.genRep.findByName(genero.getNome());
 		if (genFounded.isPresent()) {
 			return genFounded.get();
 		}

@@ -27,11 +27,12 @@ public class Usuario extends BaseDominio {
 	@NotNull
 	@NotEmpty
 	@Size(min = 5, max = 30, message = "login deve ter entre 5 e 30 caracteres")
+	@Column(updatable=false, insertable=true)
 	private String login;
 	
 	@NotNull
 	@NotEmpty
-	@Size(min = 8, max = 24, message = "senha deve ter entre 5 e 30 caracteres")
+	@Size(min = 8, max = 24, message = "senha deve ter entre 8 e 24 caracteres")
 	@Column(name = "pass")
 	private String senha;
 	

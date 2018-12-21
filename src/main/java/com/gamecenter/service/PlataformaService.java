@@ -23,7 +23,7 @@ public class PlataformaService {
 	}
 
 	private void validarPlataforma(Plataforma plat) {
-		Optional<Plataforma> platFounded = this.platRep.findById(plat.getId());
+		Optional<Plataforma> platFounded = this.platRep.findByName(plat.getNome());
 		if (platFounded.isPresent()) {
 			throw new ServiceException("Plataforma já cadastrada");
 		}
@@ -31,6 +31,14 @@ public class PlataformaService {
 	
 	public Plataforma findById(Integer id) {
 		Optional<Plataforma> platFounded = this.platRep.findById(id);
+		if (platFounded.isPresent()) {
+			return platFounded.get();
+		}
+		throw new ServiceException("Plataforma não encontrada");
+	}
+	
+	public Plataforma findByName(Plataforma plataforma) {
+		Optional<Plataforma> platFounded = this.platRep.findByName(plataforma.getNome());
 		if (platFounded.isPresent()) {
 			return platFounded.get();
 		}
