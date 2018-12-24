@@ -11,59 +11,57 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.gamecenter.domain.Empresa;
+import com.gamecenter.dto.EmpresaDTO;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EmpresaServiceTest {
 	
 	@Autowired
-	private EmpresaService empServ;
+	private EmpresaService empresaService;
 	
-	private Empresa emp;
+	private EmpresaDTO empresaDTO;
+	private Empresa empresaSalva;
 	
 	@Before
 	public void init() {
-		emp = new Empresa("Nintendo");
+		empresaDTO = new EmpresaDTO();
+		empresaDTO.setNome("Nintendo");
+		
+		empresaService.save(empresaDTO);
+		empresaSalva = empresaService.findByName(empresaDTO.getNome());
 	}
 
 	@After
 	public void deleteAll() {
-		empServ.deleteAll();
+		empresaService.deleteAll();
 	}
 	
 	@Test
 	public void deveSalvarUmaEmpresa() {
-		empServ.save(emp);
-		
-		Empresa empSalva = empServ.findById(emp.getId());
-		assertEquals(emp.getNome(), empSalva.getNome());
+	
+		assertEquals(empresaDTO.getNome(), empresaSalva.getNome());
 	}
 	
 	@Test(expected = ServiceException.class)
 	public void deveValidarSeEmpresaJaExiste() {
-		empServ.save(emp);
-		empServ.save(emp);
+		empresaService.save(empresaDTO);
 	}
 	
 	/*@Test(expected = NullPointerException.class)
 	public void deveTestarFuncaoDelete() {
-		empServ.save(emp);
-		empServ.delete(emp);
+		empresaService.delete(empresaDTO);
 	}*/
 	
 	@Test
 	public void deveTestarFuncaoUpdate() {
-		empServ.save(emp);
+		Empresa empresaNova = new Empresa(empresaSalva.getId(), "Sony");
+		empresaService.update(empresaNova);
 		
-		Empresa empSalva = empServ.findById(emp.getId());
+		Empresa empresaAtualizada = empresaService.findById(empresaNova.getId());
 		
-		Empresa empNova = new Empresa(empSalva.getId(), "Sony");
-		empServ.update(empNova);
-		
-		Empresa empAtualizada = empServ.findById(empNova.getId());
-		
-		assertNotNull(empAtualizada);
-		assertEquals(empAtualizada.getNome(), empNova.getNome());
+		assertNotNull(empresaAtualizada);
+		assertEquals(empresaAtualizada.getNome(), empresaNova.getNome());
 	}
 
 }

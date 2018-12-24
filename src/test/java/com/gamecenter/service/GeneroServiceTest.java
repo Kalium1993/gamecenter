@@ -38,5 +38,25 @@ public class GeneroServiceTest {
 		
 		assertEquals(genero.getNome(), generoSalvo.getNome());
 	}
-
+	
+	@Test(expected = ServiceException.class)
+	public void deveValidarseGeneroJaExiste() {
+		generoService.save(genero);
+		generoService.save(genero);
+	}
+	
+	@Test
+	public void deveTetarFuncaoDeUpdate() {
+		generoService.save(genero);
+		
+		Genero generoSalvo = generoService.findById(genero.getId());
+		
+		Genero generoNovo = new Genero(generoSalvo.getId(), "RPG");
+		generoService.update(generoNovo);
+	
+		Genero generoAtualizado = generoService.findById(generoNovo.getId());
+		
+		assertNotNull(generoAtualizado);
+		assertEquals(generoAtualizado.getNome(), generoNovo.getNome());
+	}
 }
