@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.gamecenter.domain.Plataforma;
+import com.gamecenter.dto.PlataformaDTO;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,11 +20,12 @@ public class PlataformaServiceTest {
 	@Autowired
 	private PlataformaService plataformaService;
 	
-	private Plataforma plataforma;
+	private PlataformaDTO plataformaDTO;
 	
 	@Before
 	public void init() {
-		plataforma = new Plataforma("Switch");
+		plataformaDTO = new PlataformaDTO();
+		plataformaDTO.setNome("Switch");
 	}
 	
 	@After
@@ -33,22 +35,22 @@ public class PlataformaServiceTest {
 
 	@Test
 	public void DeveSalvarUmaPlataforma() {
-		plataformaService.save(plataforma);
-		Plataforma plataformaSalva = plataformaService.findById(plataforma.getId());
+		plataformaService.save(plataformaDTO);
+		Plataforma plataformaSalva = plataformaService.findById(plataformaDTO.getId());
 		
-		assertEquals(plataforma.getNome(), plataformaSalva.getNome());
+		assertEquals(plataformaDTO.getNome(), plataformaSalva.getNome());
 	}
 	
 	@Test(expected = ServiceException.class)
 	public void deveValidarSePlataformaJaExiste() {
-		plataformaService.save(plataforma);
-		plataformaService.save(plataforma);
+		plataformaService.save(plataformaDTO);
+		plataformaService.save(plataformaDTO);
 	}
 	
 	@Test
 	public void deveTestarFuncaoDeUpdate() {
-		plataformaService.save(plataforma);
-		Plataforma plataformaSalva = plataformaService.findById(plataforma.getId());
+		plataformaService.save(plataformaDTO);
+		Plataforma plataformaSalva = plataformaService.findById(plataformaDTO.getId());
 		
 		Plataforma plataformaNova = new Plataforma(plataformaSalva.getId(), "PS4");
 		plataformaService.update(plataformaNova);

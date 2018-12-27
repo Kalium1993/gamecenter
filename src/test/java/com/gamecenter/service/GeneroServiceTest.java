@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.gamecenter.domain.Genero;
+import com.gamecenter.dto.GeneroDTO;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,11 +20,12 @@ public class GeneroServiceTest {
 	@Autowired
 	private GeneroService generoService;
 	
-	private Genero genero;
+	private GeneroDTO generoDTO;
 	
 	@Before
 	public void init() {
-		genero = new Genero("Ação");
+		generoDTO = new GeneroDTO();
+		generoDTO.setNome("Ação");
 	}
 	
 	@After
@@ -33,23 +35,23 @@ public class GeneroServiceTest {
 	
 	@Test
 	public void deveSalvarUmGenero() {
-		generoService.save(genero);
-		Genero generoSalvo = generoService.findById(genero.getId());
+		generoService.save(generoDTO);
+		Genero generoSalvo = generoService.findById(generoDTO.getId());
 		
-		assertEquals(genero.getNome(), generoSalvo.getNome());
+		assertEquals(generoDTO.getNome(), generoSalvo.getNome());
 	}
 	
 	@Test(expected = ServiceException.class)
 	public void deveValidarseGeneroJaExiste() {
-		generoService.save(genero);
-		generoService.save(genero);
+		generoService.save(generoDTO);
+		generoService.save(generoDTO);
 	}
 	
 	@Test
 	public void deveTetarFuncaoDeUpdate() {
-		generoService.save(genero);
+		generoService.save(generoDTO);
 		
-		Genero generoSalvo = generoService.findById(genero.getId());
+		Genero generoSalvo = generoService.findById(generoDTO.getId());
 		
 		Genero generoNovo = new Genero(generoSalvo.getId(), "RPG");
 		generoService.update(generoNovo);

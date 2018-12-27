@@ -16,45 +16,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gamecenter.domain.Empresa;
-import com.gamecenter.dto.EmpresaDTO;
-import com.gamecenter.service.EmpresaService;
+import com.gamecenter.domain.Plataforma;
+import com.gamecenter.dto.PlataformaDTO;
+import com.gamecenter.service.PlataformaService;
 
 @RestController
 @RequestMapping(value = "gamecenter")
-public class EmpresaController {
-	
-	private EmpresaService empresaService;
+public class PlataformaController {
+	private PlataformaService plataformaService;
 	
 	@Autowired
-	public EmpresaController(EmpresaService empresaService) {
-		this.empresaService = empresaService;
+	public PlataformaController(PlataformaService plataformaService) {
+		this.plataformaService = plataformaService;
 	}
 	
-	@GetMapping(value="/empresa")
-	public ResponseEntity<List<EmpresaDTO>> obterEmpresa() {
-		List<EmpresaDTO> empresas = empresaService.findAll();
+	@GetMapping(value = "/plataforma")
+	public ResponseEntity<List<PlataformaDTO>> obterPlataforma() {
+		List<PlataformaDTO> plataformas = plataformaService.findAll();
 		
-		return new ResponseEntity<List<EmpresaDTO>>(empresas, HttpStatus.OK);
+		return new ResponseEntity<List<PlataformaDTO>>(plataformas, HttpStatus.OK);
 	}
 	
-	@PostMapping(value="/empresa")
-	public ResponseEntity<?> salvar(@RequestBody @Valid EmpresaDTO empresaDTO) {
-		this.empresaService.save(empresaDTO);
+	@PostMapping(value = "/plataforma")
+	public ResponseEntity<?> salvar(@RequestBody @Valid PlataformaDTO plataformaDTO) {
+		this.plataformaService.save(plataformaDTO);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value="/empresa/{id}")
+	@DeleteMapping(value = "/plataforma{id}")
 	public ResponseEntity<?> deletar(@PathVariable("id") Integer id) {
-		this.empresaService.delete(id);
+		this.plataformaService.delete(id);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@PutMapping(value = "/empresa")
-	public ResponseEntity<?> editar(@RequestBody @Valid EmpresaDTO empresaDTO) {
-		this.empresaService.update(new Empresa(empresaDTO.getNome()));
+	@PutMapping(value = "/plataforma")
+	public ResponseEntity<?> editar(@RequestBody @Valid PlataformaDTO plataformaDTO) {
+		this.plataformaService.update(new Plataforma(plataformaDTO.getNome()));
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

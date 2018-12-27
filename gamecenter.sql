@@ -7,26 +7,26 @@ SET @@global.time_zone = '-03:00';
 
 create table empresa(
 	IDempresa int not null auto_increment primary key,
-    empresa char(80) not null
+    empresa varchar(80) not null
 );
 
 create table genero(
 	IDgenero int not null auto_increment primary key,
-    genero char(64) not null
+    genero varchar(64) not null
 );
 
 create table plataforma(
 	IDplataforma int not null auto_increment primary key,
-    plataforma char(64) not null
+    plataforma varchar(64) not null
 );
 
 create table jogo (
 	IDjogo int not null auto_increment primary key,
-    jogo char(80),
+    jogo varchar(80),
     lancamento date not null,
     classificacao int not null,
-    notaUsuarios decimal(2,2), -- entre 0 - 10
-    notaMidia decimal(2,2) -- entre 0 - 10
+    nota_usuarios float(2,2), -- entre 0 - 10
+    nota_midia float(2,2) -- entre 0 - 10
 );
 
 create table usuario (

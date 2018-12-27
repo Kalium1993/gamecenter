@@ -27,6 +27,7 @@ public class EmpresaService {
 		
 		validarEmpresa(empresa);
 		this.empresaRepository.saveAndFlush(empresa);
+		empresaDTO.setId(empresa.getId());
 	}
 	
 	public Empresa findById(Integer id) {
@@ -56,8 +57,8 @@ public class EmpresaService {
 		this.empresaRepository.saveAndFlush(empresa);
 	}
 	
-	public void delete(Empresa empresa) {
-		this.empresaRepository.delete(empresa);
+	public void delete(Integer id) {
+		this.empresaRepository.deleteById(id);
 	}
 
 	public void deleteAll() {
@@ -70,6 +71,7 @@ public class EmpresaService {
 		
 		for(Empresa empresa : empresas) {
 			EmpresaDTO empresaDTO = new EmpresaDTO();
+			empresaDTO.setId(empresa.getId());
 			empresaDTO.setNome(empresa.getNome());
 			empresaReturn.add(empresaDTO);
 		}

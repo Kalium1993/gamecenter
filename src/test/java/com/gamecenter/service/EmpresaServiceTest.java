@@ -21,15 +21,11 @@ public class EmpresaServiceTest {
 	private EmpresaService empresaService;
 	
 	private EmpresaDTO empresaDTO;
-	private Empresa empresaSalva;
 	
 	@Before
 	public void init() {
 		empresaDTO = new EmpresaDTO();
 		empresaDTO.setNome("Nintendo");
-		
-		empresaService.save(empresaDTO);
-		empresaSalva = empresaService.findByName(empresaDTO.getNome());
 	}
 
 	@After
@@ -39,12 +35,15 @@ public class EmpresaServiceTest {
 	
 	@Test
 	public void deveSalvarUmaEmpresa() {
-	
+		empresaService.save(empresaDTO);
+		Empresa empresaSalva = empresaService.findById(empresaDTO.getId());
+		
 		assertEquals(empresaDTO.getNome(), empresaSalva.getNome());
 	}
 	
 	@Test(expected = ServiceException.class)
 	public void deveValidarSeEmpresaJaExiste() {
+		empresaService.save(empresaDTO);
 		empresaService.save(empresaDTO);
 	}
 	
@@ -55,6 +54,9 @@ public class EmpresaServiceTest {
 	
 	@Test
 	public void deveTestarFuncaoUpdate() {
+		empresaService.save(empresaDTO);
+		Empresa empresaSalva = empresaService.findById(empresaDTO.getId());
+		
 		Empresa empresaNova = new Empresa(empresaSalva.getId(), "Sony");
 		empresaService.update(empresaNova);
 		

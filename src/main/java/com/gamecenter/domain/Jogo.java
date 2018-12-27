@@ -31,13 +31,16 @@ public class Jogo extends BaseDominio {
 	private LocalDate lancamento;
 	
 	@Size(min = 0, max = 10, message = "A nota deve ser entre 0 e 10")
+	@Column(name = "nota_usuarios")
 	private Float notaUsuario;
 	
 	@Size(min = 0, max = 10, message = "A nota deve ser entre 0 e 10")
+	@Column(name = "nota_midia")
 	private Float notaMidia;
 	
 	@NotNull
 	@Size(min = 0, max = 18, message = "A classificação deve ser entre 0 e 18")
+	@Column(name = "classificacao")
 	private Integer classificaoIndicativa;
 
 	@SuppressWarnings("unused")
@@ -59,28 +62,28 @@ public class Jogo extends BaseDominio {
 		this.id = id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setLancamento(LocalDate lancamento) {
-		this.lancamento = lancamento;
+	public LocalDate getLancamento() {
+		return lancamento;
 	}
 
-	public void setNotaUsuario(Float notaUsuario) {
-		this.notaUsuario = notaUsuario;
+	public Float getNotaUsuario() {
+		return notaUsuario;
 	}
 
-	public void setNotaMidia(Float notaMidia) {
-		this.notaMidia = notaMidia;
+	public Float getNotaMidia() {
+		return notaMidia;
 	}
 
-	public void setClassificaoIndicativa(Integer classificaoIndicativa) {
-		this.classificaoIndicativa = classificaoIndicativa;
+	public Integer getClassificaoIndicativa() {
+		return classificaoIndicativa;
 	}
 
 	@Override
