@@ -1,5 +1,7 @@
 package com.gamecenter.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,10 @@ public class EmpresaController {
 	}
 	
 	@GetMapping(value="/empresa")
-	public ResponseEntity<?> obterEmpresa(@RequestBody @Valid EmpresaDTO empresaDTO) {
-		this.empresaService.save(empresaDTO);
+	public ResponseEntity<List<EmpresaDTO>> obterEmpresa() {
+		List<EmpresaDTO> empresas = empresaService.findAll();
 		
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<List<EmpresaDTO>>(empresas, HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/empresa")

@@ -52,3 +52,4 @@ create table gamecenter (
     foreign key (IDjogo) references jogo(IDjogo)
 );
 
+select * from empresa;
