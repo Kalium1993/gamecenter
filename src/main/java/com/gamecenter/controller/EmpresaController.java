@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gamecenter.domain.Empresa;
 import com.gamecenter.dto.EmpresaDTO;
 import com.gamecenter.service.EmpresaService;
 
@@ -32,7 +31,7 @@ public class EmpresaController {
 	}
 	
 	@GetMapping(value="/empresa")
-	public ResponseEntity<List<EmpresaDTO>> obterEmpresa() {
+	public ResponseEntity<List<EmpresaDTO>> obterEmpresas() {
 		List<EmpresaDTO> empresas = empresaService.findAll();
 		
 		return new ResponseEntity<List<EmpresaDTO>>(empresas, HttpStatus.OK);
@@ -54,7 +53,7 @@ public class EmpresaController {
 	
 	@PutMapping(value = "/empresa")
 	public ResponseEntity<?> editar(@RequestBody @Valid EmpresaDTO empresaDTO) {
-		this.empresaService.update(new Empresa(empresaDTO.getNome()));
+		this.empresaService.update(empresaDTO);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

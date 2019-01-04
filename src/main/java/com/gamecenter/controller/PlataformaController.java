@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gamecenter.domain.Plataforma;
 import com.gamecenter.dto.PlataformaDTO;
 import com.gamecenter.service.PlataformaService;
 
@@ -31,7 +30,7 @@ public class PlataformaController {
 	}
 	
 	@GetMapping(value = "/plataforma")
-	public ResponseEntity<List<PlataformaDTO>> obterPlataforma() {
+	public ResponseEntity<List<PlataformaDTO>> obterPlataformas() {
 		List<PlataformaDTO> plataformas = plataformaService.findAll();
 		
 		return new ResponseEntity<List<PlataformaDTO>>(plataformas, HttpStatus.OK);
@@ -53,7 +52,7 @@ public class PlataformaController {
 	
 	@PutMapping(value = "/plataforma")
 	public ResponseEntity<?> editar(@RequestBody @Valid PlataformaDTO plataformaDTO) {
-		this.plataformaService.update(new Plataforma(plataformaDTO.getNome()));
+		this.plataformaService.update(plataformaDTO);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

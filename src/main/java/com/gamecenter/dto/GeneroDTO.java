@@ -11,6 +11,15 @@ public class GeneroDTO {
 	@NotEmpty
 	@Size(min = 3, max = 64, message = "Genero de jogo deve ter entre 3 e 64 caracteres")
 	private String nome;
+	
+	public GeneroDTO() {
+		
+	}
+	
+	public GeneroDTO(Integer id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
 
 	public Integer getId() {
 		return id;

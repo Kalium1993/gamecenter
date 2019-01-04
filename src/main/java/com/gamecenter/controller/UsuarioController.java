@@ -16,43 +16,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gamecenter.dto.GeneroDTO;
-import com.gamecenter.service.GeneroService;
+import com.gamecenter.dto.UsuarioDTO;
+import com.gamecenter.service.UsuarioService;
 
 @RestController
 @RequestMapping(value = "gamecenter")
-public class GeneroController {
-	private GeneroService generoService;
+public class UsuarioController {
+	private UsuarioService usuarioService;
 	
 	@Autowired
-	public GeneroController(GeneroService generoService) {
-		this.generoService = generoService;
+	public UsuarioController(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
 	}
 	
-	@GetMapping(value = "/genero")
-	public ResponseEntity<List<GeneroDTO>> obterGeneros() {
-		List<GeneroDTO> generos = generoService.findAll();
+	@GetMapping(value = "/usuario")
+	public ResponseEntity<List<UsuarioDTO>> obterUsuarios() {
+		List<UsuarioDTO> usuarios = usuarioService.findAll();
 		
-		return new ResponseEntity<List<GeneroDTO>>(generos, HttpStatus.OK);
+		return new ResponseEntity<List<UsuarioDTO>>(usuarios, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/genero")
-	public ResponseEntity<?> salvar(@RequestBody @Valid GeneroDTO generoDTO) {
-		this.generoService.save(generoDTO);
+	@PostMapping(value = "/usuario")
+	public ResponseEntity<?> salvar(@RequestBody @Valid UsuarioDTO usuarioDTO) {
+		this.usuarioService.save(usuarioDTO);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/genero/{id}")
+	@PutMapping(value = "/usuario")
+	public ResponseEntity<?> editar(@RequestBody @Valid UsuarioDTO usuarioDTO) {
+		this.usuarioService.update(usuarioDTO);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value = "/usuario/{id}")
 	public ResponseEntity<?> deletar(@PathVariable("id") Integer id) {
-		this.generoService.delete(id);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-	
-	@PutMapping(value = "/genero")
-	public ResponseEntity<?> editar(@RequestBody @Valid GeneroDTO generoDTO) {
-		this.generoService.update(generoDTO);
+		this.usuarioService.delete(id);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

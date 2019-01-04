@@ -31,29 +31,34 @@ public class GeneroService {
 	}
 
 	private void validarGenero(Genero genero) {
-		Optional<Genero> genFounded = this.generoRepository.findByName(genero.getNome());
-		if (genFounded.isPresent()) {
+		Optional<Genero> genFound = this.generoRepository.findByName(genero.getNome());
+		if (genFound.isPresent()) {
 			throw new ServiceException("Gênero já cadastrado");
 		}
 	}
 	
 	public Genero findById(Integer id) {
-		Optional<Genero> genFounded = this.generoRepository.findById(id);
-		if (genFounded.isPresent()) {
-			return genFounded.get();
+		Optional<Genero> genFound = this.generoRepository.findById(id);
+		if (genFound.isPresent()) {
+			return genFound.get();
 		}
 		throw new ServiceException("Gênero não encontrado");
 	}
 	
 	public Genero findByName(Genero genero) {
-		Optional<Genero> genFounded = this.generoRepository.findByName(genero.getNome());
-		if (genFounded.isPresent()) {
-			return genFounded.get();
+		Optional<Genero> genFound = this.generoRepository.findByName(genero.getNome());
+		if (genFound.isPresent()) {
+			return genFound.get();
 		}
 		throw new ServiceException("Gênero não encontrado");
 	}
 	
-	public void update(Genero genero) {
+	public void update(GeneroDTO generoDTO) {
+		String nome = generoDTO.getNome();
+		Integer id = generoDTO.getId();
+		
+		Genero genero = new Genero(id, nome);
+		
 		this.generoRepository.saveAndFlush(genero);
 	}
 	

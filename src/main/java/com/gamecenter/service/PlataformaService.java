@@ -31,29 +31,34 @@ public class PlataformaService {
 	}
 
 	private void validarPlataforma(Plataforma plataforma) {
-		Optional<Plataforma> platFounded = this.plataformaRepository.findByName(plataforma.getNome());
-		if (platFounded.isPresent()) {
+		Optional<Plataforma> platFound = this.plataformaRepository.findByName(plataforma.getNome());
+		if (platFound.isPresent()) {
 			throw new ServiceException("Plataforma já cadastrada");
 		}
 	}
 	
 	public Plataforma findById(Integer id) {
-		Optional<Plataforma> platFounded = this.plataformaRepository.findById(id);
-		if (platFounded.isPresent()) {
-			return platFounded.get();
+		Optional<Plataforma> platFound = this.plataformaRepository.findById(id);
+		if (platFound.isPresent()) {
+			return platFound.get();
 		}
 		throw new ServiceException("Plataforma não encontrada");
 	}
 	
 	public Plataforma findByName(Plataforma plataforma) {
-		Optional<Plataforma> platFounded = this.plataformaRepository.findByName(plataforma.getNome());
-		if (platFounded.isPresent()) {
-			return platFounded.get();
+		Optional<Plataforma> platFound = this.plataformaRepository.findByName(plataforma.getNome());
+		if (platFound.isPresent()) {
+			return platFound.get();
 		}
 		throw new ServiceException("Plataforma não encontrada");
 	}
 	
-	public void update(Plataforma plataforma) {
+	public void update(PlataformaDTO plataformaDTO) {
+		String nome = plataformaDTO.getNome();
+		Integer id = plataformaDTO.getId();
+		
+		Plataforma plataforma = new Plataforma(id, nome);
+		
 		this.plataformaRepository.saveAndFlush(plataforma);
 	}
 	

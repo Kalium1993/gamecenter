@@ -6,11 +6,20 @@ import javax.validation.constraints.Size;
 
 public class PlataformaDTO {
 	private Integer id;
-	
+
 	@NotEmpty
 	@NotNull
 	@Size(min = 3, max = 64, message = "A plataforma do jogo deve ter entre 3 e 64 caracteres")
 	private String nome;
+
+	public PlataformaDTO() {
+
+	}
+
+	public PlataformaDTO(Integer id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
 
 	public Integer getId() {
 		return id;
@@ -27,6 +36,5 @@ public class PlataformaDTO {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
+
 }

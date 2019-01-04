@@ -57,7 +57,7 @@ public class EmpresaServiceTest {
 		empresaService.save(empresaDTO);
 		Empresa empresaSalva = empresaService.findById(empresaDTO.getId());
 		
-		Empresa empresaNova = new Empresa(empresaSalva.getId(), "Sony");
+		EmpresaDTO empresaNova = new EmpresaDTO(empresaSalva.getId(), "Sony");
 		empresaService.update(empresaNova);
 		
 		Empresa empresaAtualizada = empresaService.findById(empresaNova.getId());

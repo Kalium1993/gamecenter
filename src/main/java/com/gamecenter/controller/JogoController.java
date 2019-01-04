@@ -16,43 +16,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gamecenter.dto.GeneroDTO;
-import com.gamecenter.service.GeneroService;
+import com.gamecenter.dto.JogoDTO;
+import com.gamecenter.service.JogoService;
 
 @RestController
 @RequestMapping(value = "gamecenter")
-public class GeneroController {
-	private GeneroService generoService;
+public class JogoController {
+	private JogoService jogoService;
 	
 	@Autowired
-	public GeneroController(GeneroService generoService) {
-		this.generoService = generoService;
+	public JogoController(JogoService jogoService) {
+		this.jogoService = jogoService;
 	}
 	
-	@GetMapping(value = "/genero")
-	public ResponseEntity<List<GeneroDTO>> obterGeneros() {
-		List<GeneroDTO> generos = generoService.findAll();
+	@GetMapping(value = "/jogo")
+	public ResponseEntity<List<JogoDTO>> obterJogos() {
+		List<JogoDTO> jogos = jogoService.findAll();
 		
-		return new ResponseEntity<List<GeneroDTO>>(generos, HttpStatus.OK);
+		return new ResponseEntity<List<JogoDTO>>(jogos, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/genero")
-	public ResponseEntity<?> salvar(@RequestBody @Valid GeneroDTO generoDTO) {
-		this.generoService.save(generoDTO);
+	@PostMapping(value = "/jogo")
+	public ResponseEntity<?> salvar(@RequestBody @Valid JogoDTO jogoDTO) {
+		this.jogoService.save(jogoDTO);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/genero/{id}")
+	@PutMapping(value = "/jogo")
+	public ResponseEntity<?> editar(@RequestBody @Valid JogoDTO jogoDTO) {
+		this.jogoService.update(jogoDTO);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value = "/jogo/{id}")
 	public ResponseEntity<?> deletar(@PathVariable("id") Integer id) {
-		this.generoService.delete(id);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-	
-	@PutMapping(value = "/genero")
-	public ResponseEntity<?> editar(@RequestBody @Valid GeneroDTO generoDTO) {
-		this.generoService.update(generoDTO);
+		this.jogoService.delete(id);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

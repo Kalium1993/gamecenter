@@ -41,24 +41,24 @@ public class Jogo extends BaseDominio {
 	@NotNull
 	@Size(min = 0, max = 18, message = "A classificação deve ser entre 0 e 18")
 	@Column(name = "classificacao")
-	private Integer classificaoIndicativa;
+	private Integer classificacaoIndicativa;
 
 	@SuppressWarnings("unused")
 	private Jogo() {
 		//constructor for hibernate
 	}
 
-	public Jogo(String nome, LocalDate lancamento, Float notaUsuario, Float notaMidia, Integer classificaoIndicativa) {
+	public Jogo(String nome, LocalDate lancamento, Float notaUsuario, Float notaMidia, Integer classificacaoIndicativa) {
 		this.nome = nome;
 		this.lancamento = lancamento;
 		this.notaUsuario = notaUsuario;
 		this.notaMidia = notaMidia;
-		this.classificaoIndicativa = classificaoIndicativa;
+		this.classificacaoIndicativa = classificacaoIndicativa;
 		validarDominio();
 	}
 
-	public Jogo(Integer id, String nome, LocalDate lancamento, Float notaUsuario, Float notaMidia, Integer classificaoIndicativa) {
-		this(nome, lancamento, notaUsuario, notaMidia, classificaoIndicativa);
+	public Jogo(Integer id, String nome, LocalDate lancamento, Float notaUsuario, Float notaMidia, Integer classificacaoIndicativa) {
+		this(nome, lancamento, notaUsuario, notaMidia, classificacaoIndicativa);
 		this.id = id;
 	}
 
@@ -82,15 +82,15 @@ public class Jogo extends BaseDominio {
 		return notaMidia;
 	}
 
-	public Integer getClassificaoIndicativa() {
-		return classificaoIndicativa;
+	public Integer getClassificacaoIndicativa() {
+		return classificacaoIndicativa;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((classificaoIndicativa == null) ? 0 : classificaoIndicativa.hashCode());
+		result = prime * result + ((classificacaoIndicativa == null) ? 0 : classificacaoIndicativa.hashCode());
 		result = prime * result + ((lancamento == null) ? 0 : lancamento.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((notaMidia == null) ? 0 : notaMidia.hashCode());
@@ -107,10 +107,10 @@ public class Jogo extends BaseDominio {
 		if (getClass() != obj.getClass())
 			return false;
 		Jogo other = (Jogo) obj;
-		if (classificaoIndicativa == null) {
-			if (other.classificaoIndicativa != null)
+		if (classificacaoIndicativa == null) {
+			if (other.classificacaoIndicativa != null)
 				return false;
-		} else if (!classificaoIndicativa.equals(other.classificaoIndicativa))
+		} else if (!classificacaoIndicativa.equals(other.classificacaoIndicativa))
 			return false;
 		if (lancamento == null) {
 			if (other.lancamento != null)

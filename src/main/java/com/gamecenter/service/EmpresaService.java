@@ -19,44 +19,49 @@ public class EmpresaService {
 	public EmpresaService(EmpresaRepository empresaRepository) {
 		this.empresaRepository = empresaRepository;
 	}
-	
+
 	public void save(EmpresaDTO empresaDTO) {
 		String nome = empresaDTO.getNome();
-		
+
 		Empresa empresa = new Empresa(nome);
-		
+
 		validarEmpresa(empresa);
 		this.empresaRepository.saveAndFlush(empresa);
 		empresaDTO.setId(empresa.getId());
 	}
-	
+
 	public Empresa findById(Integer id) {
-		Optional<Empresa> empFounded = empresaRepository.findById(id);
-		if (empFounded.isPresent()) {
-			return empFounded.get();
+		Optional<Empresa> empFound = empresaRepository.findById(id);
+		if (empFound.isPresent()) {
+			return empFound.get();
 		}
 		throw new ServiceException("Empresa não encontrada");
 	}
-	
+
 	public Empresa findByName(String nome) {
-		Optional<Empresa> empFounded = empresaRepository.findByName(nome);
-		if (empFounded.isPresent()) {
-			return empFounded.get();
+		Optional<Empresa> empFound = empresaRepository.findByName(nome);
+		if (empFound.isPresent()) {
+			return empFound.get();
 		}
 		throw new ServiceException("Empresa não encontrada");
 	}
-	
+
 	private void validarEmpresa(Empresa empresa) {
-		Optional<Empresa> empFounded = empresaRepository.findByName(empresa.getNome());
-		if (empFounded.isPresent()) {
+		Optional<Empresa> empFound = empresaRepository.findByName(empresa.getNome());
+		if (empFound.isPresent()) {
 			throw new ServiceException("Empresa já cadastrada");
 		}
 	}
-	
-	public void update(Empresa empresa) {
+
+	public void update(EmpresaDTO empresaDTO) {
+		String nome = empresaDTO.getNome();
+		Integer id = empresaDTO.getId();
+
+		Empresa empresa = new Empresa(id, nome);
+		
 		this.empresaRepository.saveAndFlush(empresa);
 	}
-	
+
 	public void delete(Integer id) {
 		this.empresaRepository.deleteById(id);
 	}
@@ -64,18 +69,18 @@ public class EmpresaService {
 	public void deleteAll() {
 		this.empresaRepository.deleteAll();
 	}
-	
+
 	public List<EmpresaDTO> findAll() {
 		List<EmpresaDTO> empresaReturn = new ArrayList<EmpresaDTO>();
 		List<Empresa> empresas = empresaRepository.findAll();
-		
-		for(Empresa empresa : empresas) {
+
+		for (Empresa empresa : empresas) {
 			EmpresaDTO empresaDTO = new EmpresaDTO();
 			empresaDTO.setId(empresa.getId());
 			empresaDTO.setNome(empresa.getNome());
 			empresaReturn.add(empresaDTO);
 		}
-		
+
 		return empresaReturn;
 	}
 }
