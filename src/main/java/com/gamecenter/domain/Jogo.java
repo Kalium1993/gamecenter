@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,16 +34,19 @@ public class Jogo extends BaseDominio {
 	@NotNull
 	private LocalDate lancamento;
 	
-	@Size(min = 0, max = 10, message = "A nota deve ser entre 0 e 10")
+	@DecimalMin("0.00")
+	@DecimalMax("10.00")
 	@Column(name = "nota_usuarios")
 	private Float notaUsuario;
 	
-	@Size(min = 0, max = 10, message = "A nota deve ser entre 0 e 10")
+	@DecimalMin("0.00")
+	@DecimalMax("10.00")
 	@Column(name = "nota_midia")
 	private Float notaMidia;
 	
 	@NotNull
-	@Size(min = 0, max = 18, message = "A classificação deve ser entre 0 e 18")
+	@Min(0)
+	@Max(18)
 	@Column(name = "classificacao")
 	private Integer classificacaoIndicativa;
 

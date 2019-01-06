@@ -11,6 +11,6 @@ import com.gamecenter.domain.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
-	@Query("select u from Usuario u where u.login like %:login% order by u.login")
-	public Optional<Usuario> findByLogin(@Param("login") String login);
+	@Query("select u from Usuario u where u.login LIKE %:login% ORDER BY u.login")
+	Optional<Usuario> findByLogin(@Param("login") String login);
 }

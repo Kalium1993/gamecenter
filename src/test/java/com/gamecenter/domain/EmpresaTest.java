@@ -36,4 +36,10 @@ public class EmpresaTest {
 		String nome = RandomStringUtils.randomAlphabetic(81);
 		new Empresa(nome);
 	}
+	
+	/*@Test
+	public void deveTestarMetodoIfMicrosoft() {
+		Empresa emp = new Empresa("ms");
+		assertEquals("Microsoft", emp.getNome());
+	}*/
 }

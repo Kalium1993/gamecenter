@@ -37,7 +37,6 @@ public class UsuarioDTO {
 	@DataNascimento
 	private LocalDate nascimento;
 
-
 	public UsuarioDTO() {
 		
 	}

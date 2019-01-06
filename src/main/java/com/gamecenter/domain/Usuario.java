@@ -50,6 +50,7 @@ public class Usuario extends BaseDominio {
 	
 	@NotNull
 	@DataNascimento
+	@Column(updatable=false, insertable=true)
 	private LocalDate nascimento;
 	
 	@SuppressWarnings("unused")

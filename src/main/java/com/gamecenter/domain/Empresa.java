@@ -32,9 +32,20 @@ public class Empresa extends BaseDominio{
 	}
 
 	public Empresa(String nome) {
+		//ifMicrosoft(nome);
 		this.nome = nome;
 		validarDominio();
 	}
+
+	/*private void ifMicrosoft(String nome) {
+		if (nome.length() == 2) {
+			nome.toUpperCase();
+			
+			if (nome.equals("MS")) {
+				nome = "Microsoft";
+			}
+		}
+	}*/
 
 	public Empresa(Integer id, String nome) {
 		this(nome);
