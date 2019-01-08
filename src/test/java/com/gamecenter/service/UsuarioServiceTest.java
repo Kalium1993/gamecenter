@@ -43,8 +43,7 @@ public class UsuarioServiceTest {
 	@Test
 	public void deveSalvarUmUsuario() {
 		usuarioService.save(usuarioDTO);
-		//Usuario usuarioSalvo = usuarioService.findByLogin(usuarioDTO.getLogin());
-		Usuario usuarioSalvo = usuarioService.findById(usuarioDTO.getId());
+		Usuario usuarioSalvo = usuarioService.findByLogin(usuarioDTO.getLogin());
 		
 		assertEquals(usuarioDTO.getLogin(), usuarioSalvo.getLogin());
 		assertEquals(usuarioDTO.getSenha(), usuarioSalvo.getSenha());

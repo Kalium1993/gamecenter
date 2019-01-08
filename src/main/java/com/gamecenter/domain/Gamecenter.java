@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "gamecenter")
-public class GameCenter extends BaseDominio{
+public class Gamecenter extends BaseDominio{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,11 +45,11 @@ public class GameCenter extends BaseDominio{
 	private Usuario usuario;
 
 	@SuppressWarnings("unused")
-	private GameCenter() {
+	private Gamecenter() {
 		//constructor for hibernate
 	}
 
-	public GameCenter(Empresa empresa, Genero genero, Plataforma plataforma, Jogo jogo, Usuario usuario) {
+	public Gamecenter(Empresa empresa, Genero genero, Plataforma plataforma, Jogo jogo, Usuario usuario) {
 		this.empresa = empresa;
 		this.genero = genero;
 		this.plataforma = plataforma;
@@ -58,7 +58,7 @@ public class GameCenter extends BaseDominio{
 		validarDominio();
 	}
 
-	public GameCenter(Integer id, Empresa empresa, Genero genero, Plataforma plataforma, Jogo jogo, Usuario usuario) {
+	public Gamecenter(Integer id, Empresa empresa, Genero genero, Plataforma plataforma, Jogo jogo, Usuario usuario) {
 		this(empresa, genero, plataforma, jogo, usuario);
 		this.id = id;
 	}
@@ -107,7 +107,7 @@ public class GameCenter extends BaseDominio{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		GameCenter other = (GameCenter) obj;
+		Gamecenter other = (Gamecenter) obj;
 		if (empresa == null) {
 			if (other.empresa != null)
 				return false;

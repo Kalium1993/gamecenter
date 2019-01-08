@@ -10,42 +10,31 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 @Entity
 @Table(name = "empresa")
-public class Empresa extends BaseDominio{
-	
+public class Empresa extends BaseDominio {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IDempresa")
 	private Integer id;
-	
+
 	@NotNull
 	@NotEmpty
-	@Size(min = 3, max = 80, message = "Nome de empresa deve ter entre 3 e 80 caracteres")
+	@Size(min = 2, max = 80, message = "Nome de empresa deve ter entre 2 e 80 caracteres")
 	@Column(name = "empresa")
 	private String nome;
-	
-	
+
 	@SuppressWarnings("unused")
 	private Empresa() {
 		// constructor for hibernate
 	}
 
 	public Empresa(String nome) {
-		//ifMicrosoft(nome);
 		this.nome = nome;
 		validarDominio();
 	}
-
-	/*private void ifMicrosoft(String nome) {
-		if (nome.length() == 2) {
-			nome.toUpperCase();
-			
-			if (nome.equals("MS")) {
-				nome = "Microsoft";
-			}
-		}
-	}*/
 
 	public Empresa(Integer id, String nome) {
 		this(nome);
@@ -84,8 +73,5 @@ public class Empresa extends BaseDominio{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 }

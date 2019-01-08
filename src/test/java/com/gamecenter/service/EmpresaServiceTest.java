@@ -47,9 +47,10 @@ public class EmpresaServiceTest {
 		empresaService.save(empresaDTO);
 	}
 	
-	/*@Test(expected = NullPointerException.class)
+	/*@Test(expected = ServiceException.class)
 	public void deveTestarFuncaoDelete() {
-		empresaService.delete(empresaDTO);
+		empresaService.save(empresaDTO);
+		empresaService.delete(empresaDTO.getId());
 	}*/
 	
 	@Test

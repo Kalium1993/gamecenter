@@ -2,6 +2,7 @@ package com.gamecenter.dto;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -15,6 +16,7 @@ public class UsuarioDTO {
 	@NotNull
 	@NotEmpty
 	@Size(min = 5, max = 30, message = "login deve ter entre 5 e 30 caracteres")
+	@Column(updatable=false, insertable=true)
 	private String login;
 	
 	@NotNull

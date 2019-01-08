@@ -27,7 +27,7 @@ public class EmpresaTest {
 
 	@Test(expected = DominioInvalidoException.class)
 	public void deveValidarErroDeEmpresaCaractererMinimo() {
-		String nome = RandomStringUtils.randomAlphabetic(2);
+		String nome = RandomStringUtils.randomAlphabetic(1);
 		new Empresa(nome);
 	}
 	
@@ -37,9 +37,4 @@ public class EmpresaTest {
 		new Empresa(nome);
 	}
 	
-	/*@Test
-	public void deveTestarMetodoIfMicrosoft() {
-		Empresa emp = new Empresa("ms");
-		assertEquals("Microsoft", emp.getNome());
-	}*/
 }

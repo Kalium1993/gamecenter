@@ -36,6 +36,18 @@ public class UsuarioService {
 	}
 
 	private void validarUsuario(Usuario usuario) {
+		validarExistenciaLogin(usuario);
+		validarExistenciaNickName(usuario);
+	}
+
+	private void validarExistenciaNickName(Usuario usuario) {
+		Optional<Usuario> userFound = usuarioRepository.findByNickname(usuario.getNickname());
+		if (userFound.isPresent()) {
+			throw new ServiceException("Usuário já cadastrado");
+		}
+	}
+
+	private void validarExistenciaLogin(Usuario usuario) {
 		Optional<Usuario> userFound = usuarioRepository.findByLogin(usuario.getLogin());
 		if (userFound.isPresent()) {
 			throw new ServiceException("Usuário já cadastrado");
@@ -45,7 +57,7 @@ public class UsuarioService {
 	public Usuario findById(Integer id) {
 		Optional<Usuario> userFound = usuarioRepository.findById(id);
 		if (userFound.isPresent()) {
-			userFound.get();
+			return userFound.get();
 		}
 		throw new ServiceException("Usuário não encontrado");
 	}
@@ -53,7 +65,7 @@ public class UsuarioService {
 	public Usuario findByLogin(String login) {
 		Optional<Usuario> userFound = usuarioRepository.findByLogin(login);
 		if (userFound.isPresent()) {
-			userFound.get();
+			return userFound.get();
 		}
 		throw new ServiceException("Usuário não encontrado");
 	}
