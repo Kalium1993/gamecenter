@@ -63,7 +63,13 @@ public class UsuarioServiceTest {
 		usuarioService.save(usuarioDTO);
 		Usuario usuarioSalvo = usuarioService.findById(usuarioDTO.getId());
 		
-		UsuarioDTO usuarioEditado = new UsuarioDTO(usuarioSalvo.getId(), "Kalium", "12345678910", "20matar", "email@mail.com", usuarioSalvo.getNascimento());
+		UsuarioDTO usuarioEditado = new UsuarioDTO();
+		usuarioEditado.setId(usuarioSalvo.getId());
+		usuarioEditado.setLogin("Kalium");
+		usuarioEditado.setSenha("12345678910");
+		usuarioEditado.setNickname("20matar");
+		usuarioEditado.setEmail("email@mail.com");
+		usuarioEditado.setNascimento(usuarioSalvo.getNascimento());
 		usuarioService.update(usuarioEditado);
 		
 		Usuario usuarioAtualizado = usuarioService.findById(usuarioEditado.getId());

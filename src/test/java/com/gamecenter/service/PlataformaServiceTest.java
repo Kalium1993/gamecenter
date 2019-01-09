@@ -52,7 +52,9 @@ public class PlataformaServiceTest {
 		plataformaService.save(plataformaDTO);
 		Plataforma plataformaSalva = plataformaService.findById(plataformaDTO.getId());
 		
-		PlataformaDTO plataformaNova = new PlataformaDTO(plataformaSalva.getId(), "PS4");
+		PlataformaDTO plataformaNova = new PlataformaDTO();
+		plataformaNova.setId(plataformaSalva.getId());
+		plataformaNova.setNome("PS4");
 		plataformaService.update(plataformaNova);
 		
 		Plataforma plataformaAtualizada = plataformaService.findById(plataformaNova.getId());

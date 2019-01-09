@@ -53,7 +53,9 @@ public class GeneroServiceTest {
 		
 		Genero generoSalvo = generoService.findById(generoDTO.getId());
 		
-		GeneroDTO generoNovo = new GeneroDTO(generoSalvo.getId(), "RPG");
+		GeneroDTO generoNovo = new GeneroDTO();
+		generoNovo.setId(generoSalvo.getId());
+		generoNovo.setNome("RPG");
 		generoService.update(generoNovo);
 	
 		Genero generoAtualizado = generoService.findById(generoNovo.getId());

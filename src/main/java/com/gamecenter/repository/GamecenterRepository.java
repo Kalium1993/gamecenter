@@ -23,6 +23,6 @@ public interface GamecenterRepository extends JpaRepository<Gamecenter, Integer>
 	@Query("select gc from Gamecenter gc where gc.jogo.nome = :nome")
 	Optional<Gamecenter> findByGame(@Param("nome") String nome);
 	
-	@Query("select gc from Gamecenter gc where gc.usuario.nome = :nome")
-	Optional<Gamecenter> findByUser(@Param("nome") String nome);
+	@Query("select gc from Gamecenter gc where gc.usuario.login = :login")
+	Optional<Gamecenter> findByUser(@Param("login") String login);
 }

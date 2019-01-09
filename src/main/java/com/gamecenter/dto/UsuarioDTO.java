@@ -39,19 +39,6 @@ public class UsuarioDTO {
 	@DataNascimento
 	private LocalDate nascimento;
 
-	public UsuarioDTO() {
-		
-	}
-
-	public UsuarioDTO(Integer id, String login, String senha, String nickname, String email, LocalDate nascimento) {
-		this.id = id;
-		this.login = login;
-		this.senha = senha;
-		this.nickname = nickname;
-		this.email = email;
-		this.nascimento = nascimento;
-	}
-
 	public Integer getId() {
 		return id;
 	}

@@ -62,7 +62,13 @@ public class JogoServiceTest {
 		jogoService.save(jogoDTO);
 		Jogo jogoSalvo = jogoService.findById(jogoDTO.getId());
 		
-		JogoDTO jogoNovo = new JogoDTO(jogoSalvo.getId(), "Zelda", LocalDate.now(), new Float(9.9), new Float(9.9), new Integer(12));
+		JogoDTO jogoNovo = new JogoDTO();
+		jogoNovo.setId(jogoSalvo.getId());
+		jogoNovo.setNome("Zelda");
+		jogoNovo.setLancamento(LocalDate.now());
+		jogoNovo.setNotaUsuario(new Float(9.9));
+		jogoNovo.setNotaMidia(new Float(9.9));
+		jogoNovo.setClassificaoIndicativa(new Integer(12));
 		jogoService.update(jogoNovo);
 		
 		Jogo jogoAtualizado = jogoService.findById(jogoNovo.getId());

@@ -12,15 +12,6 @@ public class PlataformaDTO {
 	@Size(min = 3, max = 64, message = "A plataforma do jogo deve ter entre 3 e 64 caracteres")
 	private String nome;
 
-	public PlataformaDTO() {
-
-	}
-
-	public PlataformaDTO(Integer id, String nome) {
-		this.id = id;
-		this.nome = nome;
-	}
-
 	public Integer getId() {
 		return id;
 	}

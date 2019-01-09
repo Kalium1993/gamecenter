@@ -43,14 +43,14 @@ public class UsuarioService {
 	private void validarExistenciaNickName(Usuario usuario) {
 		Optional<Usuario> userFound = usuarioRepository.findByNickname(usuario.getNickname());
 		if (userFound.isPresent()) {
-			throw new ServiceException("Usuário já cadastrado");
+			throw new ServiceException("Este login já está em uso");
 		}
 	}
 
 	private void validarExistenciaLogin(Usuario usuario) {
 		Optional<Usuario> userFound = usuarioRepository.findByLogin(usuario.getLogin());
 		if (userFound.isPresent()) {
-			throw new ServiceException("Usuário já cadastrado");
+			throw new ServiceException("Este nickname já está em uso");
 		}
 	}
 	

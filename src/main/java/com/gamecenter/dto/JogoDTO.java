@@ -27,19 +27,6 @@ public class JogoDTO {
 	@Size(min = 0, max = 18, message = "A classificação deve ser entre 0 e 18")
 	private Integer classificaoIndicativa;
 
-	public JogoDTO() {
-
-	}
-
-	public JogoDTO(Integer id, String nome, LocalDate lancamento, Float notaUsuario, Float notaMidia, Integer classificaoIndicativa) {
-		this.id = id;
-		this.nome = nome;
-		this.lancamento = lancamento;
-		this.notaUsuario = notaUsuario;
-		this.notaMidia = notaMidia;
-		this.classificaoIndicativa = classificaoIndicativa;
-	}
-
 	public Integer getId() {
 		return id;
 	}

@@ -12,15 +12,6 @@ public class EmpresaDTO {
 	@NotEmpty
 	@Size(min = 3, max = 80, message = "Nome de empresa deve ter entre 3 e 80 caracteres")
 	private String nome;
-	
-	public EmpresaDTO() {
-		
-	}
-
-	public EmpresaDTO(Integer id, String nome) {
-		this.id = id;
-		this.nome = nome;
-	}
 
 	public String getNome() {
 		return nome;
