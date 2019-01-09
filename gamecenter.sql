@@ -24,9 +24,9 @@ create table jogo (
 	IDjogo int not null auto_increment primary key,
     jogo varchar(80),
     lancamento date not null,
-    classificacao int not null,
-    nota_usuarios float(2,2), -- entre 0 - 10
-    nota_midia float(2,2) -- entre 0 - 10
+    nota_usuarios int, -- entre 0 - 10
+    nota_midia int, -- entre 0 - 10
+    classificacao int not null
 );
 
 create table usuario (

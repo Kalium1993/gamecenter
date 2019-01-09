@@ -43,7 +43,7 @@ public class PlataformaController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/plataforma{id}")
+	@DeleteMapping(value = "/plataforma/{id}")
 	public ResponseEntity<?> deletar(@PathVariable("id") Integer id) {
 		this.plataformaService.delete(id);
 		

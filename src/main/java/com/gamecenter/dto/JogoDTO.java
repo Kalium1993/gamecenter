@@ -2,6 +2,8 @@ package com.gamecenter.dto;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,14 +19,17 @@ public class JogoDTO {
 	@NotNull
 	private LocalDate lancamento;
 
-	@Size(min = 0, max = 10, message = "A nota deve ser entre 0 e 10")
-	private Float notaUsuario;
+	@Min(0)
+	@Max(10)
+	private Integer notaUsuario;
 
-	@Size(min = 0, max = 10, message = "A nota deve ser entre 0 e 10")
-	private Float notaMidia;
+	@Min(0)
+	@Max(10)
+	private Integer notaMidia;
 
 	@NotNull
-	@Size(min = 0, max = 18, message = "A classificação deve ser entre 0 e 18")
+	@Min(0)
+	@Max(18)
 	private Integer classificaoIndicativa;
 
 	public Integer getId() {
@@ -51,19 +56,19 @@ public class JogoDTO {
 		this.lancamento = lancamento;
 	}
 
-	public Float getNotaUsuario() {
+	public Integer getNotaUsuario() {
 		return notaUsuario;
 	}
 
-	public void setNotaUsuario(Float notaUsuario) {
+	public void setNotaUsuario(Integer notaUsuario) {
 		this.notaUsuario = notaUsuario;
 	}
 
-	public Float getNotaMidia() {
+	public Integer getNotaMidia() {
 		return notaMidia;
 	}
 
-	public void setNotaMidia(Float notaMidia) {
+	public void setNotaMidia(Integer notaMidia) {
 		this.notaMidia = notaMidia;
 	}
 

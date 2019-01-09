@@ -24,8 +24,8 @@ public class JogoService {
 	public void save(JogoDTO jogoDTO) {
 		String nome = jogoDTO.getNome();
 		LocalDate lancamento = jogoDTO.getLancamento();
-		Float notaUsuario = jogoDTO.getNotaUsuario();
-		Float notaMidia = jogoDTO.getNotaMidia();
+		Integer notaUsuario = jogoDTO.getNotaUsuario();
+		Integer notaMidia = jogoDTO.getNotaMidia();
 		Integer classificacaoIndicativa = jogoDTO.getClassificaoIndicativa();
 		
 		Jogo jogo = new Jogo(nome, lancamento, notaUsuario, notaMidia, classificacaoIndicativa);
@@ -62,8 +62,8 @@ public class JogoService {
 		Integer id = jogoDTO.getId();
 		String nome = jogoDTO.getNome();
 		LocalDate lancamento = jogoDTO.getLancamento();
-		Float notaUsuario = jogoDTO.getNotaUsuario();
-		Float notaMidia = jogoDTO.getNotaMidia();
+		Integer notaUsuario = jogoDTO.getNotaUsuario();
+		Integer notaMidia = jogoDTO.getNotaMidia();
 		Integer classificacaoIndicativa = jogoDTO.getClassificaoIndicativa();
 		
 		Jogo jogo = new Jogo(id, nome, lancamento, notaUsuario, notaMidia, classificacaoIndicativa);

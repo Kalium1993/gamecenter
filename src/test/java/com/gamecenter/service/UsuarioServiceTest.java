@@ -81,5 +81,12 @@ public class UsuarioServiceTest {
 		assertEquals(usuarioAtualizado.getEmail(), usuarioEditado.getEmail());
 		assertNotNull(usuarioAtualizado.getNascimento());
 	}
+	
+	@Test(expected = ServiceException.class)
+	public void deveTestarFuncaoDelete() {
+		usuarioService.save(usuarioDTO);
+		usuarioService.delete(usuarioDTO.getId());
+		usuarioService.findById(usuarioDTO.getId());
+	}
 
 }

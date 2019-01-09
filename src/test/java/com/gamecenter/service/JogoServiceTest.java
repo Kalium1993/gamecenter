@@ -29,8 +29,8 @@ public class JogoServiceTest {
 		jogoDTO = new JogoDTO();
 		jogoDTO.setNome("Mario");
 		jogoDTO.setLancamento(LocalDate.now());
-		jogoDTO.setNotaUsuario(new Float(9.8));
-		jogoDTO.setNotaMidia(new Float(9.8));
+		jogoDTO.setNotaUsuario(new Integer(9));
+		jogoDTO.setNotaMidia(new Integer(9));
 		jogoDTO.setClassificaoIndicativa(new Integer(0));
 	}
 	
@@ -66,8 +66,8 @@ public class JogoServiceTest {
 		jogoNovo.setId(jogoSalvo.getId());
 		jogoNovo.setNome("Zelda");
 		jogoNovo.setLancamento(LocalDate.now());
-		jogoNovo.setNotaUsuario(new Float(9.9));
-		jogoNovo.setNotaMidia(new Float(9.9));
+		jogoNovo.setNotaUsuario(new Integer(10));
+		jogoNovo.setNotaMidia(new Integer(10));
 		jogoNovo.setClassificaoIndicativa(new Integer(12));
 		jogoService.update(jogoNovo);
 		

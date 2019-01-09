@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -34,15 +32,15 @@ public class Jogo extends BaseDominio {
 	@NotNull
 	private LocalDate lancamento;
 	
-	@DecimalMin("0.00")
-	@DecimalMax("10.00")
+	@Min(0)
+	@Max(10)
 	@Column(name = "nota_usuarios")
-	private Float notaUsuario;
+	private Integer notaUsuario;
 	
-	@DecimalMin("0.00")
-	@DecimalMax("10.00")
+	@Min(0)
+	@Max(10)
 	@Column(name = "nota_midia")
-	private Float notaMidia;
+	private Integer notaMidia;
 	
 	@NotNull
 	@Min(0)
@@ -55,7 +53,7 @@ public class Jogo extends BaseDominio {
 		//constructor for hibernate
 	}
 
-	public Jogo(String nome, LocalDate lancamento, Float notaUsuario, Float notaMidia, Integer classificacaoIndicativa) {
+	public Jogo(String nome, LocalDate lancamento, Integer notaUsuario, Integer notaMidia, Integer classificacaoIndicativa) {
 		this.nome = nome;
 		this.lancamento = lancamento;
 		this.notaUsuario = notaUsuario;
@@ -64,7 +62,7 @@ public class Jogo extends BaseDominio {
 		validarDominio();
 	}
 
-	public Jogo(Integer id, String nome, LocalDate lancamento, Float notaUsuario, Float notaMidia, Integer classificacaoIndicativa) {
+	public Jogo(Integer id, String nome, LocalDate lancamento, Integer notaUsuario, Integer notaMidia, Integer classificacaoIndicativa) {
 		this(nome, lancamento, notaUsuario, notaMidia, classificacaoIndicativa);
 		this.id = id;
 	}
@@ -81,11 +79,11 @@ public class Jogo extends BaseDominio {
 		return lancamento;
 	}
 
-	public Float getNotaUsuario() {
+	public Integer getNotaUsuario() {
 		return notaUsuario;
 	}
 
-	public Float getNotaMidia() {
+	public Integer getNotaMidia() {
 		return notaMidia;
 	}
 

@@ -62,4 +62,11 @@ public class PlataformaServiceTest {
 		assertNotNull(plataformaAtualizada);
 		assertEquals(plataformaAtualizada.getNome(), plataformaNova.getNome());
 	}
+	
+	@Test(expected = ServiceException.class)
+	public void deveTestarFuncaoDelete() {
+		plataformaService.save(plataformaDTO);
+		plataformaService.delete(plataformaDTO.getId());
+		plataformaService.findById(plataformaDTO.getId());
+	}
 }

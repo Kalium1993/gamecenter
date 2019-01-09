@@ -47,11 +47,12 @@ public class EmpresaServiceTest {
 		empresaService.save(empresaDTO);
 	}
 	
-	/*@Test(expected = ServiceException.class)
+	@Test(expected = ServiceException.class)
 	public void deveTestarFuncaoDelete() {
 		empresaService.save(empresaDTO);
 		empresaService.delete(empresaDTO.getId());
-	}*/
+		empresaService.findById(empresaDTO.getId());
+	}
 	
 	@Test
 	public void deveTestarFuncaoUpdate() {

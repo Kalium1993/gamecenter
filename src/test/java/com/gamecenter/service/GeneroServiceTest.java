@@ -63,4 +63,11 @@ public class GeneroServiceTest {
 		assertNotNull(generoAtualizado);
 		assertEquals(generoAtualizado.getNome(), generoNovo.getNome());
 	}
+	
+	@Test(expected = ServiceException.class)
+	public void deveTetarFuncaoDelete() {
+		generoService.save(generoDTO);
+		generoService.delete(generoDTO.getId());
+		generoService.findById(generoDTO.getId());
+	}
 }
