@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gamecenter.dto.EmpresaDTO;
+import com.gamecenter.metrics.EmpresaCounterSingleton;
+import com.gamecenter.metrics.EmpresaDeleteCounterSingleton;
+import com.gamecenter.metrics.EmpresaPostCounterSingleton;
 import com.gamecenter.service.EmpresaService;
 
 @RestController
@@ -32,6 +35,8 @@ public class EmpresaController {
 	
 	@GetMapping(value="/empresa")
 	public ResponseEntity<List<EmpresaDTO>> obterEmpresas() {
+		EmpresaCounterSingleton.INSTANCE.inc();
+		
 		List<EmpresaDTO> empresas = empresaService.findAll();
 		
 		return new ResponseEntity<List<EmpresaDTO>>(empresas, HttpStatus.OK);
@@ -39,6 +44,7 @@ public class EmpresaController {
 	
 	@PostMapping(value="/empresa")
 	public ResponseEntity<?> salvar(@RequestBody @Valid EmpresaDTO empresaDTO) {
+		EmpresaPostCounterSingleton.INSTANCE.inc();
 		this.empresaService.save(empresaDTO);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -46,6 +52,7 @@ public class EmpresaController {
 	
 	@DeleteMapping(value="/empresa/{id}")
 	public ResponseEntity<?> deletar(@PathVariable("id") Integer id) {
+		EmpresaDeleteCounterSingleton.INSTANCE.inc();
 		this.empresaService.delete(id);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
